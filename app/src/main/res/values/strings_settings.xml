@@ -1,0 +1,25 @@
+<resources>
+    <string name="settings_title">Settings</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_value">Language: %1$s</string>
+    <string name="settings_language_system">System</string>
+    <string name="settings_language_english" translatable="false">English</string>
+    <string name="settings_language_estonian" translatable="false">Eesti</string>
+    <string name="settings_city">Weather location</string>
+    <string name="settings_city_value">Weather location: %1$s</string>
+    <string name="settings_city_unconfigured">Choose a city</string>
+    <string name="settings_show_clock">Show clock and date</string>
+    <string name="settings_show_weather">Show weather</string>
+    <string name="settings_done">Done</string>
+    <string name="settings_cancel">Cancel</string>
+    <string name="settings_search">Search</string>
+    <string name="settings_city_hint">City, region or country</string>
+    <string name="settings_search_minimum">Enter at least two characters</string>
+    <string name="settings_searching">Searching for cities…</string>
+    <string name="settings_choose_city">Choose a location</string>
+    <string name="settings_no_cities">No locations found. Try a city name with its country.</string>
+    <string name="settings_city_error">Could not search for locations. Check your connection and try again.</string>
+    <string name="weather_choose_location">Choose weather location</string>
+    <string name="weather_city_temperature">%1$s · %2$s°C</string>
+    <string name="weather_city_unavailable">%1$s · Weather unavailable</string>
+</resources>

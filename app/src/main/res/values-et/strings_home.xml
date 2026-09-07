@@ -1,0 +1,15 @@
+<resources>
+    <string name="home_manage_apps">Halda rakendusi</string>
+    <string name="home_settings">Seaded</string>
+    <string name="home_next_background">Järgmine taustapilt</string>
+    <string name="home_android_settings">Androidi seaded</string>
+    <string name="home_google_home">Google TV avakuva</string>
+    <string name="home_about">Rakendusest</string>
+    <string name="home_close">Sulge</string>
+    <string name="home_weather_credit">Ilmaandmed:</string>
+    <string name="home_no_apps">Vali avakuvale soovitud rakendused.</string>
+    <string name="home_app_unavailable">Rakendust %1$s ei saanud avada</string>
+    <string name="home_google_unavailable">Google TV avakuva ei saanud avada</string>
+    <string name="home_service_label">Kopp TV avakuva nupp</string>
+    <string name="home_description">Avab kodunupu vajutamisel Kopp TV. Ei loe ekraani sisu.</string>
+</resources>

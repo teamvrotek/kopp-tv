@@ -1,0 +1,23 @@
+<resources>
+    <string name="settings_title">Seaded</string>
+    <string name="settings_language">Keel</string>
+    <string name="settings_language_value">Keel: %1$s</string>
+    <string name="settings_language_system">Süsteemi keel</string>
+    <string name="settings_city">Ilma asukoht</string>
+    <string name="settings_city_value">Ilma asukoht: %1$s</string>
+    <string name="settings_city_unconfigured">Vali linn</string>
+    <string name="settings_show_clock">Näita kella ja kuupäeva</string>
+    <string name="settings_show_weather">Näita ilma</string>
+    <string name="settings_done">Valmis</string>
+    <string name="settings_cancel">Tühista</string>
+    <string name="settings_search">Otsi</string>
+    <string name="settings_city_hint">Linn, piirkond või riik</string>
+    <string name="settings_search_minimum">Sisesta vähemalt kaks märki</string>
+    <string name="settings_searching">Linnade otsimine…</string>
+    <string name="settings_choose_city">Vali asukoht</string>
+    <string name="settings_no_cities">Asukohti ei leitud. Proovi linna nime koos riigiga.</string>
+    <string name="settings_city_error">Asukohti ei saanud otsida. Kontrolli internetiühendust ja proovi uuesti.</string>
+    <string name="weather_choose_location">Vali ilma asukoht</string>
+    <string name="weather_city_temperature">%1$s · %2$s°C</string>
+    <string name="weather_city_unavailable">%1$s · Ilmaandmed pole saadaval</string>
+</resources>

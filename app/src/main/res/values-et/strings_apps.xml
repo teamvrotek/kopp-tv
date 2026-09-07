@@ -1,0 +1,14 @@
+<resources>
+    <string name="apps_title">Avakuva rakendused</string>
+    <string name="apps_instructions">Vali rakendused nupuga OK. Nupud Järjesta, Tühista ja Valmis leiad paremale vajutades. Valmis salvestab muudatused.</string>
+    <string name="apps_selected_count">Valitud: %1$d</string>
+    <string name="apps_none_installed">Valimiseks pole telerirakendusi saadaval.</string>
+    <string name="apps_unavailable">%1$s (pole saadaval)</string>
+    <string name="apps_arrange">Järjesta</string>
+    <string name="apps_cancel">Tühista</string>
+    <string name="apps_done">Valmis</string>
+    <string name="apps_arrange_instructions">Vali rakendus. Paremale vajutades saad seda ette- või tahapoole liigutada. Vasakule vajutades naased loendisse.</string>
+    <string name="apps_move_earlier">Liiguta ettepoole</string>
+    <string name="apps_move_later">Liiguta tahapoole</string>
+    <string name="apps_use_order">Kasuta seda järjekorda</string>
+</resources>

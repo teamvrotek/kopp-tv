@@ -1,0 +1,14 @@
+<resources>
+    <string name="apps_title">Home screen apps</string>
+    <string name="apps_instructions">Select apps with OK. Press Right for Arrange, Cancel or Done. Done saves your changes.</string>
+    <string name="apps_selected_count">Selected: %1$d</string>
+    <string name="apps_none_installed">No TV apps are available to select.</string>
+    <string name="apps_unavailable">%1$s (unavailable)</string>
+    <string name="apps_arrange">Arrange</string>
+    <string name="apps_cancel">Cancel</string>
+    <string name="apps_done">Done</string>
+    <string name="apps_arrange_instructions">Select an app. Press Right to move it earlier or later, or Left to return to the list.</string>
+    <string name="apps_move_earlier">Move earlier</string>
+    <string name="apps_move_later">Move later</string>
+    <string name="apps_use_order">Use this order</string>
+</resources>
