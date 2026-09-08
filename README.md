@@ -5,7 +5,7 @@
 <h1 align="center">Kopp TV</h1>
 
 <p align="center">
-  <strong>A small Android TV launcher that gets you to your apps.</strong>
+  <strong>A minimal Android TV launcher with optional performance and privacy optimisations.</strong>
 </p>
 
 <p align="center">
@@ -20,7 +20,9 @@
 
 ---
 
-Choose the apps you want on Home, put them in order and get on with watching. Kopp TV uses native Android views, local photos and an optional clock and weather line. It has no external app libraries, ads or accounts.
+Choose the apps you want on Home, put them in order and get on with watching. Kopp TV is a free, open-source launcher for Android TV and Chromecast with Google TV. It uses native Android views, local photos and an optional clock and weather line, with no external app libraries, ads, analytics or accounts.
+
+The optional Android optimiser tries to improve responsiveness by turning off system animations and adjusting idle settings. It also reads local diagnostics and offers privacy changes, including disabling location access and the default voice assistant. You review the proposed changes before applying them, and the optimiser saves the original values for restore. Performance gains depend on the TV, firmware and apps.
 
 One to five apps form a centered row. Six fill the row, and larger selections scroll horizontally. Rounded banners have a thin selection ring without zoom or layout movement. Press **Left / Right** to select an app, **OK** to open it and **Up** for the menu.
 
@@ -70,7 +72,7 @@ If several devices are connected, add `-s TV_IP:DEBUG_PORT` after `adb` in every
 
 ## Android optimisation
 
-Open **Up → Settings → Android optimisation** (**Androidi optimeerimine**). **Scan** reads performance and privacy settings, memory, storage and supported Android diagnostics. Review the report, then choose **Optimise** to apply its proposed changes. Optional app findings open **App settings** for review; the optimiser does not disable or uninstall apps.
+Open **Up → Settings → Android optimisation** (**Androidi optimeerimine**). **Scan** reads performance and privacy settings, memory, storage and supported Android diagnostics. It checks a defined set of Android settings; it does not benchmark the TV or automatically tune it in the background. Review the report, then choose **Optimise** to apply its proposed changes. Optional app findings open **App settings** for review; the optimiser does not disable or uninstall apps.
 
 Enable system access once from an authorized computer, after installing Kopp TV:
 
@@ -88,9 +90,11 @@ The preview can propose these changes when the corresponding settings are availa
 - Disable Android location access for apps, plus Wi-Fi and Bluetooth scanning while those radios are switched off. Normal network and Bluetooth connections remain enabled. Features that need Android location may stop working; Kopp TV's manually chosen weather city still works.
 - Clear the default assistant and voice interaction service. This disables the default voice-assistant path and can stop the remote's Assistant button from working. It does not revoke microphone access from other apps, and system role changes or firmware may select an assistant again.
 
-Scan data stays on the TV, and the original-setting journal is saved in the app's private storage. There are no diagnostic uploads. Repeated optimisation keeps the saved original values. **Restore saved settings** restores those values; failed changes attempt rollback and report incomplete recovery. Uninstalling Kopp TV deletes its journal, so restore first if you want to undo the settings changes.
+The app skips missing or unrecognised setting values. Successful readback confirms the stored value; whether Android follows it depends on the firmware.
 
-Streaming services can still observe IP addresses and account activity. The report links to Android privacy settings for microphone and camera permissions, Usage & diagnostics, Ads and account controls. These need separate review. See Google's guidance on [Google TV advertising IDs](https://support.google.com/googletv/answer/13392198?hl=en) and [Cast usage reports](https://support.google.com/chromecast/answer/6279421?hl=en).
+Scan data stays on the TV, and the original-setting journal is saved in the app's private storage. There are no diagnostic uploads. Repeated optimisation keeps the saved original values. **Restore saved settings** restores only values changed and recorded by the in-app optimiser, and stops if a tracked value has independently changed to something other than its original or proposed value. Changes made by `configure_tv.py` use that script's separate backup. Failed operations attempt rollback and report incomplete recovery. Uninstalling Kopp TV deletes its journal, so restore first if you want to undo the settings changes.
+
+Streaming services can still observe IP addresses and account activity. The report opens Android Settings with instructions to review microphone and camera permissions, Usage & diagnostics, Ads and account controls. It also attempts a microphone shortcut on Android 12 and newer. These controls need separate review; the optimiser does not inspect all tracking or turn it all off. See Google's guidance on [Google TV advertising IDs](https://support.google.com/googletv/answer/13392198?hl=en) and [Cast usage reports](https://support.google.com/chromecast/answer/6279421?hl=en).
 
 To remove the permission grants added by the computer setup, first restore any TV settings you want to undo in Kopp TV, then use the permission backup filename printed during setup:
 
@@ -118,9 +122,11 @@ python3 scripts/configure_tv.py --serial TV_IP:DEBUG_PORT --restore .kopp-tv/BAC
 
 Use the backup filename printed during setup. Restore checks the device and Android user, and stops if accessibility services or the Home role have changed independently. A failed operation attempts to restore its changed settings and reports any incomplete rollback.
 
-The ten-minute timeout follows normal Android idle behavior. Video apps can keep the screen awake during playback. The separate `attentive_timeout` policy is reported and left unchanged because it can force sleep despite a video app's wake lock. See [Android's screen-on guidance](https://developer.android.com/develop/background-work/background-tasks/awake/screen-on) and [AOSP's timeout definitions](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-14.0.0_r1/core/java/android/provider/Settings.java).
+The ten-minute timeout follows normal Android idle behavior. Video apps can keep the screen awake during playback. The script reports any stored `attentive_timeout` value and leaves it unchanged because this policy can force sleep despite a video app's wake lock. Firmware defaults and other power policies can still affect actual sleep timing. See [Android's screen-on guidance](https://developer.android.com/develop/background-work/background-tasks/awake/screen-on) and [AOSP's timeout definitions](https://github.com/aosp-mirror/platform_frameworks_base/blob/android-14.0.0_r1/core/java/android/provider/Settings.java).
 
 Android's idle screensaver is separate from Kopp TV's rotating background photos. The script does not change the photo feature, install or remove apps, or change the system Home role. Physical remote behavior and idle timing still need checking on your TV; the script's automated tests use a fake ADB device.
+
+Computer backups contain saved settings or permission states, the Android user number and a hashed device identifier. Setup backups also include accessibility-service and Home-component names. Keep `.kopp-tv/` backups private.
 
 ## Configure Home
 
