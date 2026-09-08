@@ -1,0 +1,28 @@
+<resources>
+    <string name="optimization_title">Androidi optimeerimine</string>
+    <string name="optimization_description">Kontrolli jõudluse ja privaatsuse seadeid ning Androidi diagnostikat. Vaata aruannet enne muudatuste rakendamist üle.</string>
+    <string name="optimization_scan">Kontrolli</string>
+    <string name="optimization_optimize">Optimeeri</string>
+    <plurals name="optimization_optimize_changes">
+        <item quantity="one">Optimeeri (%1$d muudatus)</item>
+        <item quantity="other">Optimeeri (%1$d muudatust)</item>
+    </plurals>
+    <string name="optimization_restore">Taasta salvestatud seaded</string>
+    <string name="optimization_back">Tagasi</string>
+    <string name="optimization_scanning">Kontrollimine…</string>
+    <string name="optimization_optimizing">Muudatuste rakendamine…</string>
+    <string name="optimization_restoring">Salvestatud seadete taastamine…</string>
+    <string name="optimization_scan_complete">Kontroll on lõpetatud.</string>
+    <string name="optimization_scan_failed">Kontrolli ei saanud lõpetada. Uuesti proovimiseks vali Kontrolli.</string>
+    <string name="optimization_change_failed">Toimingut ei saanud lõpetada. Vaata aruannet enne uuesti proovimist üle.</string>
+    <string name="optimization_optimized">Muudatused on rakendatud.</string>
+    <string name="optimization_restored">Salvestatud seaded on taastatud.</string>
+    <string name="optimization_access_hint">Süsteemi juurdepääs vajab ühekordset seadistamist arvutist. Vaata projekti README-faili.</string>
+    <string name="optimization_device">Seade: %1$s</string>
+    <string name="optimization_navigation">Aruande lugemiseks vajuta alla. Aruandest nuppude juurde naasmiseks vajuta vasakule.</string>
+    <string name="optimization_no_report">Aruanne pole saadaval. Uuesti proovimiseks vali Kontrolli.</string>
+    <string name="optimization_app_details">Rakenduse seaded</string>
+    <string name="optimization_app_details_failed">Androidi rakenduse seadeid ei saanud avada.</string>
+    <string name="optimization_open_settings">Ava seaded</string>
+    <string name="optimization_settings_unavailable">Need seaded pole selles seadmes saadaval.</string>
+</resources>

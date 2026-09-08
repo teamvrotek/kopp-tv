@@ -3,6 +3,7 @@ package ee.kalle.minimaltv;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -94,6 +95,8 @@ public final class SettingsActivity extends Activity {
         weather.setMinHeight(dp(52));
         weather.setOnCheckedChangeListener((button, checked) -> settings.setShowWeather(checked));
         rows.addView(weather, new LinearLayout.LayoutParams(-1, -2));
+        addButton(rows, getString(R.string.optimization_title)).setOnClickListener(view ->
+                startActivity(new Intent(this, OptimizationActivity.class)));
         addButton(rows, getString(R.string.settings_done)).setOnClickListener(view -> finish());
         setContentView(root);
         language.requestFocus();

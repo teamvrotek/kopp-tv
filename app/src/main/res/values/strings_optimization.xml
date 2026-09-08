@@ -1,0 +1,28 @@
+<resources>
+    <string name="optimization_title">Android optimisation</string>
+    <string name="optimization_description">Scan performance and privacy settings, plus Android diagnostics. Review the report before applying changes.</string>
+    <string name="optimization_scan">Scan</string>
+    <string name="optimization_optimize">Optimise</string>
+    <plurals name="optimization_optimize_changes">
+        <item quantity="one">Optimise (%1$d change)</item>
+        <item quantity="other">Optimise (%1$d changes)</item>
+    </plurals>
+    <string name="optimization_restore">Restore saved settings</string>
+    <string name="optimization_back">Back</string>
+    <string name="optimization_scanning">Scanning…</string>
+    <string name="optimization_optimizing">Applying changes…</string>
+    <string name="optimization_restoring">Restoring saved settings…</string>
+    <string name="optimization_scan_complete">Scan complete.</string>
+    <string name="optimization_scan_failed">The scan could not be completed. Choose Scan to try again.</string>
+    <string name="optimization_change_failed">The operation could not be completed. Review the report before trying again.</string>
+    <string name="optimization_optimized">Changes applied.</string>
+    <string name="optimization_restored">Saved settings restored.</string>
+    <string name="optimization_access_hint">System access needs a one-time setup from a computer. See the repository README.</string>
+    <string name="optimization_device">Device: %1$s</string>
+    <string name="optimization_navigation">Press Down to read the report, or Left from the report to return to the buttons.</string>
+    <string name="optimization_no_report">No report is available. Choose Scan to try again.</string>
+    <string name="optimization_app_details">App settings</string>
+    <string name="optimization_app_details_failed">Android app settings could not be opened.</string>
+    <string name="optimization_open_settings">Open settings</string>
+    <string name="optimization_settings_unavailable">These settings are not available on this device.</string>
+</resources>

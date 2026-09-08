@@ -1,8 +1,14 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Optional development permissions granted through scripts/enable_optimizer.py. -->
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.DUMP" tools:ignore="ProtectedPermissions" />
     <uses-feature android:name="android.software.leanback" android:required="true" />
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
     <queries>
+        <package android:name="com.google.android.tvrecommendations" />
+        <package android:name="com.google.android.apps.education.cast2class" />
+        <package android:name="com.google.android.katniss" />
         <intent>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
@@ -22,6 +28,7 @@
         </activity>
         <activity android:name=".ManageAppsActivity" android:exported="false" android:screenOrientation="landscape" />
         <activity android:name=".SettingsActivity" android:exported="false" android:screenOrientation="landscape" />
+        <activity android:name=".OptimizationActivity" android:exported="false" android:screenOrientation="landscape" />
         <service android:name=".HomeService" android:exported="true" android:label="@string/home_service_label" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter><action android:name="android.accessibilityservice.AccessibilityService" /></intent-filter>
             <meta-data android:name="android.accessibilityservice" android:resource="@xml/home_service" />

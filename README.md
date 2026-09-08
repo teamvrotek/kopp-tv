@@ -11,6 +11,7 @@
 <p align="center">
   <a href="#build">Build</a> •
   <a href="#install">Install</a> •
+  <a href="#android-optimisation">Optimisation</a> •
   <a href="#tv-setup">TV setup</a> •
   <a href="#configure-home">Configure Home</a> •
   <a href="#photos">Photos</a> •
@@ -67,6 +68,38 @@ adb shell am start -n ee.kalle.minimaltv/.MainActivity
 
 If several devices are connected, add `-s TV_IP:DEBUG_PORT` after `adb` in every command.
 
+## Android optimisation
+
+Open **Up → Settings → Android optimisation** (**Androidi optimeerimine**). **Scan** reads performance and privacy settings, memory, storage and supported Android diagnostics. Review the report, then choose **Optimise** to apply its proposed changes. Optional app findings open **App settings** for review; the optimiser does not disable or uninstall apps.
+
+Enable system access once from an authorized computer, after installing Kopp TV:
+
+```sh
+python3 scripts/enable_optimizer.py --serial TV_IP:DEBUG_PORT --apply
+```
+
+This Python 3.8+ command grants only `WRITE_SECURE_SETTINGS` for settings changes and `DUMP` for supported system diagnostics. It checks the installed app and its declared permissions, preserves existing grants and saves their previous states in the ignored `.kopp-tv/` directory before changing anything. Without `--apply`, it only previews. Use `--status` to inspect permission states. Multiple connected devices require `--serial`.
+
+You can disconnect ADB and turn off Wireless debugging afterward. The in-app controls use the granted permissions without root or a separate background helper.
+
+The preview can propose these changes when the corresponding settings are available:
+
+- Turn off Android animations and the idle screensaver, use a normal ten-minute idle timeout, and disable staying awake while plugged in.
+- Disable Android location access for apps, plus Wi-Fi and Bluetooth scanning while those radios are switched off. Normal network and Bluetooth connections remain enabled. Features that need Android location may stop working; Kopp TV's manually chosen weather city still works.
+- Clear the default assistant and voice interaction service. This disables the default voice-assistant path and can stop the remote's Assistant button from working. It does not revoke microphone access from other apps, and system role changes or firmware may select an assistant again.
+
+Scan data stays on the TV, and the original-setting journal is saved in the app's private storage. There are no diagnostic uploads. Repeated optimisation keeps the saved original values. **Restore saved settings** restores those values; failed changes attempt rollback and report incomplete recovery. Uninstalling Kopp TV deletes its journal, so restore first if you want to undo the settings changes.
+
+Streaming services can still observe IP addresses and account activity. The report links to Android privacy settings for microphone and camera permissions, Usage & diagnostics, Ads and account controls. These need separate review. See Google's guidance on [Google TV advertising IDs](https://support.google.com/googletv/answer/13392198?hl=en) and [Cast usage reports](https://support.google.com/chromecast/answer/6279421?hl=en).
+
+To remove the permission grants added by the computer setup, first restore any TV settings you want to undo in Kopp TV, then use the permission backup filename printed during setup:
+
+```sh
+python3 scripts/enable_optimizer.py --serial TV_IP:DEBUG_PORT --restore .kopp-tv/optimizer-BACKUP.json --apply
+```
+
+Permission restore checks the device, Android user and backup format. It revokes only grants added by that setup, preserves pre-existing grants, and stops if a pre-existing grant changed independently. Restoring permissions leaves Android setting values as they are.
+
 ## TV setup
 
 The optional Python 3.8+ setup script configures Home and idle behavior in one command:
@@ -101,6 +134,7 @@ Open **Up → Settings** (**Seaded**) for:
 | Weather location | Search for a city and select a matching location |
 | Show clock and date | Show or hide the clock and date together |
 | Show weather | Show or hide the temperature line |
+| Android optimisation | Scan system settings and diagnostics, apply supported changes, or restore saved settings |
 
 The clock uses the TV's timezone and 12/24-hour setting. Dates follow the chosen locale. A new installation has no preset weather city. Weather uses [Open-Meteo](https://open-meteo.com/) without a location permission or API key. City searches send the search text to Open-Meteo; temperature requests use the selected coordinates. Hidden weather does not poll.
 
@@ -141,9 +175,11 @@ The repository copies have unnecessary personal metadata removed, with compresse
 python3 -m unittest discover -s scripts/tests -v
 ```
 
-The 47 local Android tests use Robolectric to cover app selection and order, layouts, language, Home behavior and weather. The 14 Python tests use a stateful fake ADB endpoint to cover previews, device selection, service preservation, backups, restore, command errors and rollback. Neither test suite connects to a TV.
+Local Android tests cover app selection and order, layouts, language, Home behavior, weather and optimisation. The Python tests use stateful fake ADB endpoints to cover previews, device selection, service and permission preservation, backups, restore, command errors and rollback. Neither test suite connects to a TV.
 
 Checked on a Chromecast HD running Android TV 14: upgrade from the original launcher, app-order and locale migration, existing photos, live weather, 24-hour time and setup-script settings. Physical Home-button and full ten-minute idle/playback checks remain manual.
+
+The version 1.6 optimiser and permission-enabling script were also checked on that Chromecast. The live scan found three remaining changes: location access, the default assistant and voice interaction. Applying them succeeded, restoring reproduced all fourteen inspected original values exactly, and applying again left the three changes enabled. The existing animation, screensaver and ten-minute timeout settings were preserved. Bluetooth scanning was absent and was skipped.
 
 ## License
 
