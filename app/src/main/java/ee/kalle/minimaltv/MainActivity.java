@@ -254,16 +254,15 @@ public class MainActivity extends Activity {
     private void showMenu() {
         if (menu != null && menu.isShowing()) return;
         menu = new AlertDialog.Builder(this).setItems(new String[] {
-            getString(R.string.home_manage_apps), getString(R.string.home_settings),
-            getString(R.string.home_next_background), getString(R.string.home_android_settings),
-            getString(R.string.home_google_home), getString(R.string.home_about)
+            getString(R.string.home_next_background), getString(R.string.home_manage_apps),
+            getString(R.string.home_google_home), getString(R.string.home_android_settings),
+            getString(R.string.home_about), getString(R.string.home_settings)
         }, (dialog, which) -> {
-            if (which == 0) openManageApps();
-            else if (which == 1) startActivity(new Intent(this, SettingsActivity.class));
-            else if (which == 2) wallpapers.next();
+            if (which == 0) wallpapers.next();
+            else if (which == 1) openManageApps();
+            else if (which == 2) openGoogleHome();
             else if (which == 3) startActivity(new Intent(Settings.ACTION_SETTINGS));
-            else if (which == 4) openGoogleHome();
-            else {
+            else if (which == 4) {
                 String attribution = android.text.TextUtils.htmlEncode(getString(R.string.home_weather_credit));
                 about = new AlertDialog.Builder(this).setTitle(R.string.app_name)
                     .setMessage(android.text.Html.fromHtml(getString(R.string.home_copyright)
@@ -271,7 +270,7 @@ public class MainActivity extends Activity {
                     .setPositiveButton(R.string.home_close, null).show();
                 TextView message = about.findViewById(android.R.id.message);
                 if (message != null) message.setMovementMethod(android.text.method.LinkMovementMethod.getInstance());
-            }
+            } else if (which == 5) startActivity(new Intent(this, SettingsActivity.class));
         }).create();
         menu.setOnDismissListener(dialog -> focusSelected());
         menu.show();

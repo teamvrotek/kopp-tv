@@ -159,7 +159,12 @@ public class MainActivityTest {
         controller.get().dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MENU));
         AlertDialog menu = ShadowAlertDialog.getLatestAlertDialog();
         assertTrue(menu.isShowing());
-        assertEquals("Halda rakendusi", menu.getListView().getAdapter().getItem(0).toString());
+        List<String> expected = Arrays.asList("Järgmine taustapilt", "Halda rakendusi",
+            "Google TV avakuva", "Androidi seaded", "Rakendusest", "Seaded");
+        assertEquals(expected.size(), menu.getListView().getAdapter().getCount());
+        for (int index = 0; index < expected.size(); index++) {
+            assertEquals(expected.get(index), menu.getListView().getAdapter().getItem(index).toString());
+        }
         menu.dismiss();
         close(controller);
     }

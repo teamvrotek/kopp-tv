@@ -143,7 +143,7 @@ python3 -m unittest discover -s scripts/tests -v
 
 The 47 local Android tests use Robolectric to cover app selection and order, layouts, language, Home behavior and weather. The 14 Python tests use a stateful fake ADB endpoint to cover previews, device selection, service preservation, backups, restore, command errors and rollback. Neither test suite connects to a TV.
 
-Version 1.5 has not yet been installed or checked on a physical TV.
+Checked on a Chromecast HD running Android TV 14: upgrade from the original launcher, app-order and locale migration, existing photos, live weather, 24-hour time and setup-script settings. Physical Home-button and full ten-minute idle/playback checks remain manual.
 
 ## License
 
